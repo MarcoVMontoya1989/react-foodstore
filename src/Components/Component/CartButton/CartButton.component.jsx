@@ -9,8 +9,8 @@ const CartButtonComponent = (props) => {
           <CartIconComponent/>
         </span>
         <span>Your Cart</span>
-        <span>3</span>
-      </button>;
+        <span className={'badge'}>3</span>
+      </button>
     </>
   );
 };
