@@ -1,9 +1,9 @@
 import React from 'react';
 
-const CardComponent = () => {
+const CardComponent = (props) => {
   return (
-    <div>
-      
+    <div className={'card'}>
+      {props.children}
     </div>
   );
 };

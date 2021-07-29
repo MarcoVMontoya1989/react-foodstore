@@ -1,22 +1,20 @@
 import React from 'react';
+import CardComponent from "../../Utils/Card/Card.component";
+import MealItemComponent from "../MealItem/MealItem.component";
 
 const MealsAvailableComponent = ({data}) => {
 
   const mealsData = data.map(meals => {
-    return (
-      <>
-        <li>{meals.name}</li>
-        <li>{meals.description}</li>
-        <li>{meals.price}</li>
-      </>
-    )
+    return <MealItemComponent meal={meals}/>
   });
 
   return (
-    <section>
-      <ul>
-        {mealsData}
-      </ul>
+    <section className={"meals"}>
+      <CardComponent>
+        <ul>
+          {mealsData}
+        </ul>
+      </CardComponent>
     </section>
   );
 };
