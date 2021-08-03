@@ -10,7 +10,7 @@ const HeaderComponent = () => {
         <CartButtonComponent />
       </header>
       <div className="main-image">
-        <img src={mealImage} alt="image"/>
+        <img src={mealImage} alt="food buffet"/>
       </div>
     </>
   );

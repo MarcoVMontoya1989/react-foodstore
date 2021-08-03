@@ -5,7 +5,7 @@ import MealItemComponent from "../MealItem/MealItem.component";
 const MealsAvailableComponent = ({data}) => {
 
   const mealsData = data.map(meals => {
-    return <MealItemComponent meal={meals}/>
+    return <MealItemComponent key={meals.id} {...meals}/>
   });
 
   return (
