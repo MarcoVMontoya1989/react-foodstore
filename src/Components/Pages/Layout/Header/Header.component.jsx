@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import mealImage from '../../../../assets/meals.jpg';
 import CartButtonComponent from "../../../Component/CartButton/CartButton.component";
 
@@ -7,7 +7,7 @@ const HeaderComponent = ({onShowCart}) => {
     <>
       <header className={'header'}>
         <h1>React Meals</h1>
-        <CartButtonComponent on/>
+        <CartButtonComponent showCart={onShowCart}/>
       </header>
       <div className="main-image">
         <img src={mealImage} alt="food buffet"/>
