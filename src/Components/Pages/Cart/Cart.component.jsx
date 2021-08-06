@@ -1,28 +1,32 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import ModalComponent from "../Modal/Modal.component";
+import CartContext from "../../../Store/Cart/cart.context";
+import CartItem from "../../Component/CartItem/CartItem.component";
 
 const CartComponent = ({onClose}) => {
 
-  const mock = [
-    {id: 'c1', name: "Sushi", amount: 10, price: 23.88}
-  ].map(item => {
-    return (
-      <li>{item.name}</li>
-    );
+  const cartCtx = useContext(CartContext);
+
+  const listFood = cartCtx.items.map(item => {
+    return (<CartItem {...item} />);
   });
+
+  const hasItems = cartCtx.items.length > 0 ? (
+    <button className={'cart-actions-button'}>Order</button>)
+    : null;
 
   return (
     <ModalComponent toClose={onClose}>
       <ul className={'cart-items'}>
-        {mock}
+        {listFood}
       </ul>
       <div className={'cart-total'}>
         <span>total amount:</span>
-        <span>23.88</span>
+        <span>{cartCtx.totalAmount.toFixed(2)}</span>
       </div>
       <div className={'cart-actions'}>
         <button className={'cart-actions-button--alt'} onClick={onClose}>Close</button>
-        <button className={'cart-actions-button'}>Order</button>
+        {hasItems}
       </div>
     </ModalComponent>
   );
