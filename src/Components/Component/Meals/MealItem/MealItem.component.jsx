@@ -9,7 +9,7 @@ const MealItemComponent = (props) => {
   const cartCtx = useContext(CartContext);
 
   const addToCartHandler = (amount) => {
-    const totalAmount = cartCtx.addItems({
+    cartCtx.addItems({
       id: id,
       name: name,
       amount: amount,

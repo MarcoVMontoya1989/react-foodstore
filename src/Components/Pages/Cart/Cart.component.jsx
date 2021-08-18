@@ -8,7 +8,11 @@ const CartComponent = ({onClose}) => {
   const cartCtx = useContext(CartContext);
 
   const listFood = cartCtx.items.map(item => {
-    return (<CartItem {...item} />);
+    return (<CartItem
+      {...item}
+      onRemoveItem={cartCtx.removeItems}
+      onAddItem={cartCtx.addItems}
+    />);
   });
 
   const hasItems = cartCtx.items.length > 0 ? (

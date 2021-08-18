@@ -12,12 +12,12 @@ const CartProvider = (props) => {
   const [cartState, dispatchCartAction] = useReducer(cartReducer, INITIAL_STATE);
 
   const addCartItemHandler = (item) => {
-    console.log('triggering', item);
-    dispatchCartAction({type: 'ADD_ITEM_TO_CART', payload: item})
+    dispatchCartAction({type: 'ADD_ITEM_TO_CART', payload: item});
   };
 
   const removeCartItemHandler = (id) => {
-    dispatchCartAction({type: 'REMOVE_ITEM_TO_CART', payload: id})
+    // console.log('triggering remove', id);
+    dispatchCartAction({type: 'REMOVE_ITEM_TO_CART', payload: id});
   };
 
   const cartValues = {

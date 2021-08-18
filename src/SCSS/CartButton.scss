@@ -1,4 +1,4 @@
-.button {
+.button-cart {
   cursor: pointer;
   font: inherit;
   border: none;
@@ -25,10 +25,6 @@
     margin-right: 0.5rem;
   }
 
-  .bump {
-    animation: bump 300ms ease-out;
-  }
-
   &:hover, &:active {
     background-color: $deep-brown;
 
@@ -36,6 +32,10 @@
       background-color: $dark-red;
     }
   }
+}
+
+.bump {
+  animation: bump 300ms ease-out;
 }
 
 @keyframes bump {

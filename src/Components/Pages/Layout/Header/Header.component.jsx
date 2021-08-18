@@ -1,4 +1,4 @@
-import React, {useContext} from 'react';
+import React from 'react';
 import mealImage from '../../../../assets/meals.jpg';
 import CartButtonComponent from "../../../Component/CartButton/CartButton.component";
 
