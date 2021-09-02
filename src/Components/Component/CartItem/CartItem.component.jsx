@@ -19,6 +19,7 @@ const CartItem = ({id, price, amount, name, onAddItem, onRemoveItem}) => {
           <span className={'amount'}>x {amount}</span>
         </div>
       </div>
+
       <div className={'actions'}>
         <button onClick={() => onRemoveItem(id)}>−</button>
         <button onClick={() => addToCartHandler(id,name,price)}>+</button>
