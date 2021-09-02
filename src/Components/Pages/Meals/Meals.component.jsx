@@ -1,39 +1,68 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import MealsAvailableComponent from "../../Component/Meals/MealsAvailable/MealsAvailable.component";
 import MealsSummaryComponent from "../../Component/Meals/MealsSummary/MealsSummary.component";
 
 const MealsComponent = () => {
-  const DUMMY_MEALS = [
-    {
-      id: 'm1',
-      name: 'Sushi',
-      description: 'Finest fish and veggies',
-      price: 22.99,
-    },
-    {
-      id: 'm2',
-      name: 'Schnitzel',
-      description: 'A german specialty!',
-      price: 16.5,
-    },
-    {
-      id: 'm3',
-      name: 'Barbecue Burger',
-      description: 'American, raw, meaty',
-      price: 12.99,
-    },
-    {
-      id: 'm4',
-      name: 'Green Bowl',
-      description: 'Healthy...and green...',
-      price: 18.99,
-    },
-  ];
 
+  const [isLoading, setIsLoading] = useState(false);
+  const [mealMenu, setMealMenu] = useState([]);
+  const [error, setError] = useState({
+    error: false,
+    message: null
+  });
+
+  useEffect( () => {
+
+
+      const fetchDataMeals = async () => {
+
+        setIsLoading(true);
+
+        const response = await fetch('https://dummymoviesreact-default-rtdb.firebaseio.com/meals.json');
+        const data = await response.json();
+
+        if (data === null || !response.ok) {
+          setError({
+            error: true,
+            message: "No data available",
+          });
+        }
+
+        let loadMeals = [];
+
+        for (const dataKey in data) {
+          loadMeals.push({
+            id: dataKey,
+            name: data[dataKey].name,
+            description: data[dataKey].description,
+            price: data[dataKey].price
+          });
+        }
+
+        setMealMenu(loadMeals);
+
+        setIsLoading(false);
+      }
+
+    try{
+      fetchDataMeals();
+    } catch(e){
+      setError({
+        error: true,
+        message: e.message,
+      });
+      setIsLoading(false);
+    }
+  }, []);
+
+  const LoadingContainer = (
+    isLoading ? <p className="meals-loading">Loading...</p> :  <MealsAvailableComponent data={mealMenu}/>
+  );
+  
   return (
     <>
       <MealsSummaryComponent/>
-      <MealsAvailableComponent data={DUMMY_MEALS}/>
+      { error.error ? (<p className="meals-error">Something went wrong...</p>) : LoadingContainer}
     </>
   );
 };

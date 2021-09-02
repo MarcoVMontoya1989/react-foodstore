@@ -32,6 +32,16 @@
       font-size: 1.25rem;
     }
   }
+
+  &-loading {
+    text-align: center;
+    color: white;
+  }
+
+  &-error {
+    text-align: center;
+    color: red;
+  }
 }
 
 .summary {
