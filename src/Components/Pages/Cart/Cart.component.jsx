@@ -18,14 +18,24 @@ const CartComponent = ({onClose}) => {
   });
 
   const submitOrderHandler = async (userData) => {
-    console.log('triggering');
-    await fetch('https://dummymoviesreact-default-rtdb.firebaseio.com/order.json', {
-      method: "POST",
-      body: JSON.stringify({
-        user: userData,
-        orderedItems: cartCtx.items
-      })
-    });
+
+    try {
+      const response = await fetch('https://dummymoviesreact-default-rtdb.firebaseio.com/order.json', {
+        method: "POST",
+        body: JSON.stringify({
+          user: userData,
+          orderedItems: cartCtx.items
+        })
+      });
+
+      if (response.status === 200) {
+        alert("Order successfully");
+        onClose();
+      }
+    } catch (e) {
+      console.log(e);
+    }
+
   }
 
   const orderHandler = () => {
