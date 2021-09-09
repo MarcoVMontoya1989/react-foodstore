@@ -1,6 +1,6 @@
 import React, {useRef, useState} from 'react';
 
-const CheckoutComponent = ({toClose}) => {
+const CheckoutComponent = ({toClose, onSubmit}) => {
 
   const nameInputRef = useRef();
   const streetInputRef = useRef();
@@ -27,7 +27,10 @@ const CheckoutComponent = ({toClose}) => {
       postalCode: enteredPostalCode,
       city: enteredCity
     });
+
+    onSubmit(formInputs);
   }
+
 
   return (
     <form className={'form'} onSubmit={confirmHandler}>

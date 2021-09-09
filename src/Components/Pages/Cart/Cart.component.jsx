@@ -17,6 +17,17 @@ const CartComponent = ({onClose}) => {
     />);
   });
 
+  const submitOrderHandler = async (userData) => {
+    console.log('triggering');
+    await fetch('https://dummymoviesreact-default-rtdb.firebaseio.com/order.json', {
+      method: "POST",
+      body: JSON.stringify({
+        user: userData,
+        orderedItems: cartCtx.items
+      })
+    });
+  }
+
   const orderHandler = () => {
     setIsCheckingOut(true);
   }
@@ -36,7 +47,7 @@ const CartComponent = ({onClose}) => {
         <span>{cartCtx.totalAmount.toFixed(2)}</span>
       </div>
 
-      {IsCheckingOut ? <CheckoutComponent toClose={onClose}/> : null}
+      {IsCheckingOut ? <CheckoutComponent onSubmit={submitOrderHandler} toClose={onClose}/> : null}
 
       <div className={'cart-actions'}>
         <button className={'cart-actions-button--alt'} onClick={onClose}>Close</button>
