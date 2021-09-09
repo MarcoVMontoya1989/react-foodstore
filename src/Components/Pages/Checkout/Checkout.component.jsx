@@ -26,7 +26,7 @@ const CheckoutComponent = ({toClose}) => {
       street: enteredStreet,
       postalCode: enteredPostalCode,
       city: enteredCity
-    })
+    });
   }
 
   return (
@@ -48,7 +48,7 @@ const CheckoutComponent = ({toClose}) => {
         <input type="text" id="City" ref={cityInputRef}/>
       </div>
 
-      <button type='button' onClick={toClose}>Confirm</button>
+      <button type='button' onClick={confirmHandler}>Confirm</button>
     </form>
   );
 };
